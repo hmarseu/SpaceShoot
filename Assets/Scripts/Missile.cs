@@ -6,7 +6,7 @@ public class Missile : MonoBehaviour
 {
     [SerializeField] public float speed = 5f; // Vitesse du missile
 
-    [SerializeField] private GameObject ObjectPooling;
+    private GameObject ObjectPooling;
     // Start is called before the first frame update
     void Start()
     {
