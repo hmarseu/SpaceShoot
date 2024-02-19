@@ -9,6 +9,8 @@ public class Spaceship : MonoBehaviour
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
+    
+    public static Action<Spaceship> SpaceshipDied { get; set; }
 
     public int Health
     {
@@ -89,6 +91,7 @@ public class Spaceship : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        SpaceshipDied?.Invoke(this);
     }
 
     public void SetInvincibilityFrame()

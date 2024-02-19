@@ -3,54 +3,52 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
+    [SerializeField] GameManager _gameManager;
     [SerializeField] TextMeshProUGUI _scoreText;
     [SerializeField] TextMeshProUGUI _healthText;
     [SerializeField] TextMeshProUGUI _bombText;
     [SerializeField] TextMeshProUGUI _invincibilityText;
     [SerializeField] TextMeshProUGUI _shieldText;
 
-    GameManager _gameManager;
-    Spaceship _spaceship;
-
-    void Awake()
-    {
-        _gameManager = FindObjectOfType<GameManager>();
-        _spaceship = FindObjectOfType<Spaceship>();
-    }
+    public Spaceship Spaceship { get; set; }
 
     void OnEnable()
     {
         _gameManager.ScoreChanged += OnScoreChanged;
-        _spaceship.HealthChanged += OnHealthChanged;
-        _spaceship.BombCountChanged += OnBombCountChanged;
-    }
-
-    void Start()
-    {
-        ResetUI();
+        Spaceship.HealthChanged += OnHealthChanged;
+        Spaceship.BombCountChanged += OnBombCountChanged;
     }
 
     void Update()
     {
-        if (_spaceship == null)
+        if (Spaceship == null)
             return;
 
-        _invincibilityText.text = $"Invincibilité : {_spaceship.InvincibilityCountdown:#0.###}s";
-        _shieldText.text = "Boucier : " + (_spaceship.HasShield ? "Actif" : "Inactif");
+        _invincibilityText.text = $"Invincibilité : {Spaceship.InvincibilityCountdown:#0.###}s";
+        _shieldText.text = "Boucier : " + (Spaceship.HasShield ? "Actif" : "Inactif");
     }
 
     void OnDisable()
     {
         _gameManager.ScoreChanged -= OnScoreChanged;
-        _spaceship.HealthChanged -= OnHealthChanged;
-        _spaceship.BombCountChanged -= OnBombCountChanged;
+        Spaceship.HealthChanged -= OnHealthChanged;
+        Spaceship.BombCountChanged -= OnBombCountChanged;
+    }
+
+    public void ResetUI()
+    {
+        _scoreText.text = $"Score : {_gameManager.Score}";
+        _healthText.text = $"Santé : {Spaceship.Health}";
+        _bombText.text = $"Bombe : {Spaceship.BombCount}";
+        _invincibilityText.text = $"Invincibilité : {Spaceship.InvincibilityCountdown}s";
+        _shieldText.text = $"Bouclier : " + (Spaceship.HasShield ? "Actif" : "Inactif");
     }
 
     void OnScoreChanged(int newScore)
     {
         _scoreText.text = $"Score : {newScore}";
     }
-    
+
     void OnHealthChanged(int newHealth)
     {
         _healthText.text = $"Santé : {newHealth}";
@@ -59,14 +57,5 @@ public class GameUI : MonoBehaviour
     void OnBombCountChanged(int newBombCount)
     {
         _bombText.text = $"Bombe : {newBombCount}";
-    }
-
-    void ResetUI()
-    {
-        _scoreText.text = $"Score : {0}";
-        _healthText.text = $"Santé : {3}";
-        _bombText.text = $"Bombe : {0}";
-        _invincibilityText.text = $"Invincibilité : {0}s";
-        _shieldText.text = $"Bouclier : {"Inactif"}";
     }
 }
