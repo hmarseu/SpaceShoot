@@ -17,13 +17,17 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void HandleResume()
+    public void HandleResume()
     {
-       pauseMenu.SetActive(false);
+        _isPause = false;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 
-    private void HandlePause()
+    public void HandlePause()
     {
+        _isPause = true;
+        Time.timeScale = 0;
         pauseMenu.SetActive(true);
     }
 }
