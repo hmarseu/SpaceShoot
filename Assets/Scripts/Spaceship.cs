@@ -33,6 +33,7 @@ public class Spaceship : MonoBehaviour
     }
 
     public bool HasShield { get; set; }
+    public int MissileLevel { get; set; }
 
     public float InvincibilityCountdown
     {
@@ -62,6 +63,14 @@ public class Spaceship : MonoBehaviour
             InvincibilityCountdown -= Time.deltaTime;
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!col.TryGetComponent<Loot>(out var loot))
+            return;
+        
+        loot.Use(this);
+    }
+
     [ContextMenu("Shoot")]
     public void Shoot()
     {
@@ -81,6 +90,7 @@ public class Spaceship : MonoBehaviour
         }
 
         Health--;
+        MissileLevel = 0;
         
         if (Health == 0)
             Die();
