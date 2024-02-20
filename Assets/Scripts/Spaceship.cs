@@ -8,11 +8,13 @@ public class Spaceship : MonoBehaviour
     [SerializeField] float _invincibilityDuration;
     [SerializeField] float _fireRate;
     [SerializeField] List<ShotPattern> _shotPatterns;
+    [SerializeField] BoxCollider2D _boxCollider2D;
 
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
     float _shootCooldown;
+    readonly List<Collider2D> _overlapResults = new List<Collider2D>();
     
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
@@ -37,6 +39,7 @@ public class Spaceship : MonoBehaviour
     }
 
     public bool HasShield { get; set; }
+    public int MaxMissileLevel => _shotPatterns.Count - 1;
     public int MissileLevel { get; set; }
 
     public float InvincibilityCountdown
@@ -63,9 +66,24 @@ public class Spaceship : MonoBehaviour
 
     void Update()
     {
+        CheckCollision();
         ElapseShootCooldown();
         ElapseInvincibilityCountdown();
 
+        void CheckCollision()
+        {
+            _overlapResults.Clear();
+            var colliderCount = _boxCollider2D.OverlapCollider(new ContactFilter2D().NoFilter(), _overlapResults);
+
+            foreach (var collider in _overlapResults)
+            {
+                if (collider == null)
+                    continue;
+                
+                ProcessCollision(collider);
+            }
+        }
+        
         void ElapseShootCooldown()
         {
             if (_shootCooldown > 0)
@@ -85,12 +103,13 @@ public class Spaceship : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void ProcessCollision(Collider2D col)
     {
         if (!col.TryGetComponent<Loot>(out var loot))
             return;
         
         loot.Use(this);
+        Destroy(loot.gameObject);
     }
 
     [ContextMenu("Increment missile level")]
@@ -98,7 +117,7 @@ public class Spaceship : MonoBehaviour
     {
         MissileLevel++;
 
-        if (MissileLevel > 5)
+        if (MissileLevel > MaxMissileLevel)
             MissileLevel = 0;
     }
 
