@@ -5,10 +5,14 @@ public class Spaceship : MonoBehaviour
 {
     [SerializeField] int _baseHealth;
     [SerializeField] float _invincibilityDuration;
+    [SerializeField] float _fireRate;
 
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
+    float _shootCooldown;
+    
+    public static Action<Spaceship> SpaceshipDied { get; set; }
 
     public int Health
     {
@@ -31,6 +35,7 @@ public class Spaceship : MonoBehaviour
     }
 
     public bool HasShield { get; set; }
+    public int MissileLevel { get; set; }
 
     public float InvincibilityCountdown
     {
@@ -56,14 +61,40 @@ public class Spaceship : MonoBehaviour
 
     void Update()
     {
-        if (InvincibilityCountdown > 0)
-            InvincibilityCountdown -= Time.deltaTime;
+        ElapseShootCooldown();
+        ElapseInvincibilityCountdown();
+
+        void ElapseShootCooldown()
+        {
+            if (_shootCooldown > 0)
+            {
+                _shootCooldown -= Time.deltaTime;
+                return;
+            }
+
+            Shoot();
+            _shootCooldown += _fireRate;
+        }
+
+        void ElapseInvincibilityCountdown()
+        {
+            if (InvincibilityCountdown > 0)
+                InvincibilityCountdown -= Time.deltaTime;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!col.TryGetComponent<Loot>(out var loot))
+            return;
+        
+        loot.Use(this);
     }
 
     [ContextMenu("Shoot")]
     public void Shoot()
     {
-        
+        Debug.Log("Shoot");
     }
 
     [ContextMenu("Hit")]
@@ -79,6 +110,7 @@ public class Spaceship : MonoBehaviour
         }
 
         Health--;
+        MissileLevel = 0;
         
         if (Health == 0)
             Die();
@@ -89,6 +121,7 @@ public class Spaceship : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        SpaceshipDied?.Invoke(this);
     }
 
     public void SetInvincibilityFrame()
