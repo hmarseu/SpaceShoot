@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public int chanceToBeGolden=20;
     public SOWave[] waves;
     SOWave currentWave;
     List<GameObject> currentWaveEnemys;
@@ -48,10 +49,15 @@ public class Spawner : MonoBehaviour
     private void SpawneOneEnemy(int indexEnemy)
     {
         float location = Random.Range(minX, maxX);
-
-        
         GameObject spawnee = EnnemyPooling.Instance.GetTurret();
         spawnee.transform.position = new Vector3(location, topRight.y, 0);
+        int tryGolden = Random.Range(0, 100);
+        if (tryGolden<= chanceToBeGolden)
+        {
+            spawnee.TryGetComponent<SpriteRenderer>(out var rend);
+            rend.color = new Color(255, 215, 0);
+        }
+       
     }
     IEnumerator WaveControl()
     {
