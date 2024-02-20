@@ -7,6 +7,10 @@ public class Spaceship : MonoBehaviour
     [SerializeField] float _invincibilityDuration;
     [SerializeField] float _fireRate;
 
+    public GameObject missilePrefab;
+
+    public GameObject turretCannon;
+
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
@@ -94,7 +98,10 @@ public class Spaceship : MonoBehaviour
     [ContextMenu("Shoot")]
     public void Shoot()
     {
-        Debug.Log("Shoot");
+        GameObject missile = ObjectPooling.Instance.GetProjectile();
+        missile.transform.position = turretCannon.transform.position;
+        missile.transform.rotation =  Quaternion.Euler(turretCannon.transform.rotation.x, turretCannon.transform.rotation.y, turretCannon.transform.rotation.z );
+
     }
 
     [ContextMenu("Hit")]
