@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
+    [SerializeField] GameManagerInputs gameManager;
     [SerializeField] Button Pause;
     [SerializeField] Button Resume;
 
