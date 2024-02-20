@@ -5,10 +5,12 @@ public class Spaceship : MonoBehaviour
 {
     [SerializeField] int _baseHealth;
     [SerializeField] float _invincibilityDuration;
+    [SerializeField] float _fireRate;
 
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
+    float _shootCooldown;
     
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
@@ -59,8 +61,26 @@ public class Spaceship : MonoBehaviour
 
     void Update()
     {
-        if (InvincibilityCountdown > 0)
-            InvincibilityCountdown -= Time.deltaTime;
+        ElapseShootCooldown();
+        ElapseInvincibilityCountdown();
+
+        void ElapseShootCooldown()
+        {
+            if (_shootCooldown > 0)
+            {
+                _shootCooldown -= Time.deltaTime;
+                return;
+            }
+
+            Shoot();
+            _shootCooldown += _fireRate;
+        }
+
+        void ElapseInvincibilityCountdown()
+        {
+            if (InvincibilityCountdown > 0)
+                InvincibilityCountdown -= Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -74,7 +94,7 @@ public class Spaceship : MonoBehaviour
     [ContextMenu("Shoot")]
     public void Shoot()
     {
-        
+        Debug.Log("Shoot");
     }
 
     [ContextMenu("Hit")]

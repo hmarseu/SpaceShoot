@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseHealth: 3
   _invincibilityDuration: 1
+  _fireRate: 0.33
