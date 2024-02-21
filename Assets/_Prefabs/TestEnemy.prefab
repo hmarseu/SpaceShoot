@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6138171355721239794}
   - component: {fileID: 6173374630679147844}
   - component: {fileID: 7460980076964543016}
-  - component: {fileID: 3161507429998275752}
+  - component: {fileID: -8796942321695768466}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -120,7 +120,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3751961440676705520}
   m_CullTransparentMesh: 1
---- !u!114 &3161507429998275752
+--- !u!114 &-8796942321695768466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

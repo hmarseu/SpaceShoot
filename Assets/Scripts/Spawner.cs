@@ -97,7 +97,7 @@ public class Spawner : MonoBehaviour
         waveFinished = false;
         enemyCount = 1;
         
-        currentWave = Instantiate(waves[waveCount]);
+        currentWave = Instantiate(bossWaves[0]);
         currentWaveEnemys = currentWave.enemysInWave;
         enDieCounter.SetEnemyInWave(currentWaveEnemys.Count);
 
@@ -110,6 +110,7 @@ public class Spawner : MonoBehaviour
         {
             int rand = Random.Range(0, bossWaves.Length);
             pool.MakeCopyFromPrefab(Bspawnee, bossWaves[rand].enemysInWave[0]);
+            Debug.Log(bossWaves[rand].enemysInWave[0]);
             Bspawnee.transform.position = new Vector3(location, topRight.y, 0);
             Bspawnee.transform.localScale = new Vector3(2f, 2f, 1);
             bossAppear();
@@ -137,7 +138,9 @@ public class Spawner : MonoBehaviour
                 SpawneOneEnemy(enemyCount-1);
                     
                 enemyCount++;
-                
+                enDieCounter.EnemyDie();
+
+
             }
             else if(waves.Length >= waveCount + 1)
             {
