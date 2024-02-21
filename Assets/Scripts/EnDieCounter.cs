@@ -19,6 +19,7 @@ public class EnDieCounter : MonoBehaviour
         enemyInWave = eInW;
         enemyDied = 0;
     }
+    [ContextMenu("dieenemy")]
     public void EnemyDie()
     {
        
@@ -29,6 +30,7 @@ public class EnDieCounter : MonoBehaviour
           
         }
     }
+    [ContextMenu("dieBoss")]
     public void BossDie()
     {
         spawner.DefeatBoss();
