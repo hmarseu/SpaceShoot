@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
 
     private void passToNextWave()
     {
-    
+            waveFinished = false;
             enemyCount = 1;
             //parce qu'on commence a la vague 1 et pas 0
             currentWave = Instantiate(waves[waveCount]);
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
     }
     private void SpawneOneEnemy(int indexEnemy)
     {
-        Debug.Log($"la liste d'ennemi contient {currentWaveEnemys.Count} et nous en sommes a {indexEnemy}");
+        
         float location = Random.Range(minX, maxX);
         GameObject spawnee = pool.GetEmpty();
         if (currentWaveEnemys.Count >=indexEnemy)
@@ -94,9 +94,16 @@ public class Spawner : MonoBehaviour
 
     private void BossFight()
     {
+        waveFinished = false;
+        enemyCount = 1;
+        
+        currentWave = Instantiate(waves[waveCount]);
+        currentWaveEnemys = currentWave.enemysInWave;
+        enDieCounter.SetEnemyInWave(currentWaveEnemys.Count);
+
         StopAllCoroutines();
         //event UI apparition de sa barre de santé 
-        Debug.Log("on lance la bataille de boss");
+        
         float location = Random.Range(minX, maxX);
         GameObject Bspawnee = pool.GetEmpty();
         if (bossWaves.Length!=0)
@@ -124,14 +131,13 @@ public class Spawner : MonoBehaviour
         while (true) 
         {
             
-            
             if (enemyCount <= currentWaveEnemys.Count)
             {
                 yield return new WaitForSeconds(currentWave.timeBtwSpawn);
                 SpawneOneEnemy(enemyCount-1);
                     
                 enemyCount++;
-                enDieCounter.EnemyDie();
+                
             }
             else if(waves.Length >= waveCount + 1)
             {
@@ -151,7 +157,7 @@ public class Spawner : MonoBehaviour
                 
                 }
             }
-            else 
+            else if (waveFinished) 
             {
               
                 if (waveCount % 3 == 0)
@@ -165,7 +171,8 @@ public class Spawner : MonoBehaviour
                     currentWave.timeBtwWave /= 1.2f;
                 
                     enemyCount = 1;
-
+                    waveFinished = false;
+                    enDieCounter.SetEnemyInWave(currentWaveEnemys.Count);
                 }
             }
             yield return null;

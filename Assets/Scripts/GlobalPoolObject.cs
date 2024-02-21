@@ -94,7 +94,7 @@ public class GlobalPoolObject : MonoBehaviour
         Component[] components = Prefab.GetComponents<Component>();
         foreach (Component component in components)
         {
-            Debug.Log(component);
+            //Debug.Log(component);
         }
         addComponent(emptyGameObject, components);
         emptyGameObject.GetComponents<SpriteRenderer>()[0].sprite = Prefab.GetComponents<SpriteRenderer>()[0].sprite;
