@@ -6,11 +6,10 @@ public class Missile : MonoBehaviour
 {
     [SerializeField] public float speed = 5f; // Vitesse du missile
 
-    private GameObject ObjectPooling;
-    // Start is called before the first frame update
+    private GameObject _globalPooling;
     void Start()
     {
-        ObjectPooling = GameObject.Find("ObjectPooling Manager");
+        _globalPooling = GameObject.Find("GlobalPooling Manager");
     }
 
     // Update is called once per frame
@@ -41,11 +40,16 @@ public class Missile : MonoBehaviour
         if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
         {
             // Le missile est sorti de l'écran, vous pouvez exécuter une action ici (par exemple, détruire le missile)
-            ObjectPooling.GetComponent<ObjectPooling>().ClearOneProjectile(gameObject);
+            _globalPooling.GetComponent<GlobalPoolObject>().ClearOneEmpty(gameObject);
 
             // Détruire le missile
             //Destroy(gameObject);
         }
+    }
+
+    public int GetSpeed()
+    {
+        return (int)speed;
     }
 
 }

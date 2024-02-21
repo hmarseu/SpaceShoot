@@ -24,138 +24,49 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     ""name"": ""GameInput"",
     ""maps"": [
         {
-            ""name"": ""Gameplay"",
-            ""id"": ""d4b57ace-5483-41af-8f64-aa2b669e575d"",
+            ""name"": ""TestMoteur"",
+            ""id"": ""f32ae42e-95cb-4a05-9a0b-25cf01cd8b0c"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""FireMissile1"",
                     ""type"": ""Value"",
-                    ""id"": ""ccd2bbdd-c2cc-4479-9387-ab0fc63321f0"",
+                    ""id"": ""22df9d92-0e71-46bb-8721-3d76c8cd2299"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PlaceTurret"",
+                    ""type"": ""Value"",
+                    ""id"": ""875a617a-9740-470b-91b6-b4535d1052f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FollowMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""ee1402ed-8187-4fec-8491-8d9533673f80"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""FireMissile2"",
                     ""type"": ""Button"",
-                    ""id"": ""c8b52976-2449-4ce0-90fe-47885e0a8213"",
+                    ""id"": ""eadec61c-e245-4d97-80fb-2cb94cdf2d35"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""Zqsd"",
-                    ""id"": ""a9fcfbec-3407-4b18-9224-da01876a0538"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""a64352e8-d6bd-408e-9fc0-29fa91a2778f"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""37052749-51d5-4dd7-90ec-e38f4b06b161"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""32e614b4-dcba-4b5e-a738-a0022e2e5b35"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""da822747-2ffa-43fc-8320-2add1fd70b32"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""76a35f01-a543-4d5c-94f1-32d60234f6d3"",
-                    ""path"": ""<XInputController>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d5016ba1-dc01-4dff-9ff9-f42cedd4cffe"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be0a1161-0181-4531-babf-e2264b5b37d8"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e206a7ee-2b85-447a-8a73-0b1c8564654a"",
-                    ""path"": ""<XInputController>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""UI"",
-            ""id"": ""ed5e8d04-de05-41de-9467-89709fd10918"",
-            ""actions"": [
-                {
-                    ""name"": ""Resume"",
+                    ""name"": ""FireMissile3"",
                     ""type"": ""Button"",
-                    ""id"": ""a57f6cb4-89b5-4201-b78e-3a0f81062055"",
+                    ""id"": ""8ad1385f-4fb4-4bf2-ada8-2275e2dc9c7b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -165,23 +76,56 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""9f2738ae-c03d-44ae-981a-0bb03f43c2d7"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""01acfa3c-0b54-45c8-9423-2c46bc2f4f47"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Resume"",
+                    ""action"": ""FireMissile1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d91b102a-24f0-4c25-9066-bd33f7ca2691"",
-                    ""path"": ""<XInputController>/start"",
+                    ""id"": ""0567fb07-2128-471e-ad4f-aea2c9cf95ed"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Resume"",
+                    ""action"": ""PlaceTurret"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5f34cec-a0eb-4fd8-bfae-ee9ae48cf213"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FollowMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1acb6dc-d3cf-47db-ae9b-4a9561d31d94"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireMissile2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cc210ca-a6be-4986-8c5a-34363d55badf"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireMissile3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -190,13 +134,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Gameplay
-        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
+        // TestMoteur
+        m_TestMoteur = asset.FindActionMap("TestMoteur", throwIfNotFound: true);
+        m_TestMoteur_FireMissile1 = m_TestMoteur.FindAction("FireMissile1", throwIfNotFound: true);
+        m_TestMoteur_PlaceTurret = m_TestMoteur.FindAction("PlaceTurret", throwIfNotFound: true);
+        m_TestMoteur_FollowMouse = m_TestMoteur.FindAction("FollowMouse", throwIfNotFound: true);
+        m_TestMoteur_FireMissile2 = m_TestMoteur.FindAction("FireMissile2", throwIfNotFound: true);
+        m_TestMoteur_FireMissile3 = m_TestMoteur.FindAction("FireMissile3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -255,112 +199,89 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Gameplay
-    private readonly InputActionMap m_Gameplay;
-    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
-    private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_Pause;
-    public struct GameplayActions
+    // TestMoteur
+    private readonly InputActionMap m_TestMoteur;
+    private List<ITestMoteurActions> m_TestMoteurActionsCallbackInterfaces = new List<ITestMoteurActions>();
+    private readonly InputAction m_TestMoteur_FireMissile1;
+    private readonly InputAction m_TestMoteur_PlaceTurret;
+    private readonly InputAction m_TestMoteur_FollowMouse;
+    private readonly InputAction m_TestMoteur_FireMissile2;
+    private readonly InputAction m_TestMoteur_FireMissile3;
+    public struct TestMoteurActions
     {
         private @GameInput m_Wrapper;
-        public GameplayActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public TestMoteurActions(@GameInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FireMissile1 => m_Wrapper.m_TestMoteur_FireMissile1;
+        public InputAction @PlaceTurret => m_Wrapper.m_TestMoteur_PlaceTurret;
+        public InputAction @FollowMouse => m_Wrapper.m_TestMoteur_FollowMouse;
+        public InputAction @FireMissile2 => m_Wrapper.m_TestMoteur_FireMissile2;
+        public InputAction @FireMissile3 => m_Wrapper.m_TestMoteur_FireMissile3;
+        public InputActionMap Get() { return m_Wrapper.m_TestMoteur; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
-        public void AddCallbacks(IGameplayActions instance)
+        public static implicit operator InputActionMap(TestMoteurActions set) { return set.Get(); }
+        public void AddCallbacks(ITestMoteurActions instance)
         {
-            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            if (instance == null || m_Wrapper.m_TestMoteurActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TestMoteurActionsCallbackInterfaces.Add(instance);
+            @FireMissile1.started += instance.OnFireMissile1;
+            @FireMissile1.performed += instance.OnFireMissile1;
+            @FireMissile1.canceled += instance.OnFireMissile1;
+            @PlaceTurret.started += instance.OnPlaceTurret;
+            @PlaceTurret.performed += instance.OnPlaceTurret;
+            @PlaceTurret.canceled += instance.OnPlaceTurret;
+            @FollowMouse.started += instance.OnFollowMouse;
+            @FollowMouse.performed += instance.OnFollowMouse;
+            @FollowMouse.canceled += instance.OnFollowMouse;
+            @FireMissile2.started += instance.OnFireMissile2;
+            @FireMissile2.performed += instance.OnFireMissile2;
+            @FireMissile2.canceled += instance.OnFireMissile2;
+            @FireMissile3.started += instance.OnFireMissile3;
+            @FireMissile3.performed += instance.OnFireMissile3;
+            @FireMissile3.canceled += instance.OnFireMissile3;
         }
 
-        private void UnregisterCallbacks(IGameplayActions instance)
+        private void UnregisterCallbacks(ITestMoteurActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @FireMissile1.started -= instance.OnFireMissile1;
+            @FireMissile1.performed -= instance.OnFireMissile1;
+            @FireMissile1.canceled -= instance.OnFireMissile1;
+            @PlaceTurret.started -= instance.OnPlaceTurret;
+            @PlaceTurret.performed -= instance.OnPlaceTurret;
+            @PlaceTurret.canceled -= instance.OnPlaceTurret;
+            @FollowMouse.started -= instance.OnFollowMouse;
+            @FollowMouse.performed -= instance.OnFollowMouse;
+            @FollowMouse.canceled -= instance.OnFollowMouse;
+            @FireMissile2.started -= instance.OnFireMissile2;
+            @FireMissile2.performed -= instance.OnFireMissile2;
+            @FireMissile2.canceled -= instance.OnFireMissile2;
+            @FireMissile3.started -= instance.OnFireMissile3;
+            @FireMissile3.performed -= instance.OnFireMissile3;
+            @FireMissile3.canceled -= instance.OnFireMissile3;
         }
 
-        public void RemoveCallbacks(IGameplayActions instance)
+        public void RemoveCallbacks(ITestMoteurActions instance)
         {
-            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_TestMoteurActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IGameplayActions instance)
+        public void SetCallbacks(ITestMoteurActions instance)
         {
-            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_TestMoteurActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_TestMoteurActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public GameplayActions @Gameplay => new GameplayActions(this);
-
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Resume;
-    public struct UIActions
+    public TestMoteurActions @TestMoteur => new TestMoteurActions(this);
+    public interface ITestMoteurActions
     {
-        private @GameInput m_Wrapper;
-        public UIActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Resume => m_Wrapper.m_UI_Resume;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Resume.started += instance.OnResume;
-            @Resume.performed += instance.OnResume;
-            @Resume.canceled += instance.OnResume;
-        }
-
-        private void UnregisterCallbacks(IUIActions instance)
-        {
-            @Resume.started -= instance.OnResume;
-            @Resume.performed -= instance.OnResume;
-            @Resume.canceled -= instance.OnResume;
-        }
-
-        public void RemoveCallbacks(IUIActions instance)
-        {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUIActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UIActions @UI => new UIActions(this);
-    public interface IGameplayActions
-    {
-        void OnMove(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
-    {
-        void OnResume(InputAction.CallbackContext context);
+        void OnFireMissile1(InputAction.CallbackContext context);
+        void OnPlaceTurret(InputAction.CallbackContext context);
+        void OnFollowMouse(InputAction.CallbackContext context);
+        void OnFireMissile2(InputAction.CallbackContext context);
+        void OnFireMissile3(InputAction.CallbackContext context);
     }
 }

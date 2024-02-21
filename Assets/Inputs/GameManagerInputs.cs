@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManagerInputs : MonoBehaviour
-{
+{/*
     [SerializeField]private InputReader _input;
     [SerializeField] GameObject pauseMenu;
 
@@ -29,5 +29,5 @@ public class GameManagerInputs : MonoBehaviour
         _isPause = true;
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
-    }
+    }*/
 }
