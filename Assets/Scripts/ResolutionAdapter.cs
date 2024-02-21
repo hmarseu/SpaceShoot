@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
+
 [RequireComponent(typeof(RectTransform))]
 public class ResolutionAdapter : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class ResolutionAdapter : MonoBehaviour
     private void Awake()
     {
         screenSize = new Vector2(1170, 2532); //Default screen size (iphone12)
-        targetImage = GetComponent<Image>();
+       
         imageRect = GetComponent<RectTransform>();
         if (screenSize.x != Screen.width || screenSize.y != Screen.height)
         {
