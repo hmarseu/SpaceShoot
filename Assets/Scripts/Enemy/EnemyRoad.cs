@@ -14,11 +14,20 @@ public class EnemyRoad : MonoBehaviour
         {
             waypoints.Add(child);
         }
+
+        // Ajouter cette route à la liste des routes disponibles dans EnemyAI
+        UpdateAvailableRoads();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateAvailableRoads()
     {
-        
+        EnemyAI[] enemyAIs = FindObjectsOfType<EnemyAI>();
+        foreach (EnemyAI enemyAI in enemyAIs)
+        {
+            if (!enemyAI.availableRoads.Contains(this))
+            {
+                enemyAI.availableRoads.Add(this);
+            }
+        }
     }
 }
