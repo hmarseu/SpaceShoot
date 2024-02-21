@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Pause;
     [SerializeField] Button Resume;
     [SerializeField] Button Quit;
+    [SerializeField] TextMeshProUGUI FpsCompteur;
 
     private void Start()
     {
         Pause.onClick.AddListener(gameManager.HandlePause);
         Resume.onClick.AddListener(gameManager.HandleResume);
         Quit.onClick.AddListener(Leave);
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 120;
     }
     private void Leave()
     {
@@ -23,4 +27,12 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    private void Update()
+    {
+        //FpsCompteur.text = 
+    }
+    void OnGUI()
+    {
+        GUI.Label(new Rect(0, 0, 100, 50), "FPS: " + (int)(1.0f / Time.smoothDeltaTime));
+    }
 }

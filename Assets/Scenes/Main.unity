@@ -244,8 +244,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3722648626187661783, guid: 5924dc83f2ab3474e84ce7490e1334f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 435465581}
   m_SourcePrefab: {fileID: 100100000, guid: 5924dc83f2ab3474e84ce7490e1334f6, type: 3}
+--- !u!1 &435465580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3722648626187661783, guid: 5924dc83f2ab3474e84ce7490e1334f6, type: 3}
+  m_PrefabInstance: {fileID: 435465579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &435465581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435465580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff236c8f1902fc428e67772e9878a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyInWave: 10
+  enemyDied: 0
 --- !u!1001 &544919610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 14f369f5887363940bbf7baf5cabf449, type: 2}
-  speed: 3
+  speed: 15
   camera: {fileID: 1810260397}
 --- !u!212 &1666211912
 SpriteRenderer:
@@ -844,6 +866,10 @@ PrefabInstance:
     - target: {fileID: 142388454912107130, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.00030517578
+      objectReference: {fileID: 0}
+    - target: {fileID: 419607424185090200, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_MovementRange
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5203467874835040239, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
       propertyPath: m_Name
