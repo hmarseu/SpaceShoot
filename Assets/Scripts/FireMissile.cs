@@ -17,6 +17,7 @@ public class FireMissile : MonoBehaviour
     public InputActionReference triggerAction2;
     public InputActionReference triggerAction3;
 
+
     public GameObject GlobalPoolObject;
         
     // Start is called before the first frame update
@@ -25,6 +26,8 @@ public class FireMissile : MonoBehaviour
         triggerAction1.action.performed += ctx => FireMissileOnMouseClick(missilePrefab1);
         triggerAction2.action.performed += ctx => FireMissileOnMouseClick(missilePrefab2);
         triggerAction3.action.performed += ctx => FireMissileOnMouseClick(missilePrefab3);
+
+        
     }
 
     // Update is called once per frame

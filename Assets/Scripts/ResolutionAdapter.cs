@@ -11,7 +11,7 @@ public class ResolutionAdapter : MonoBehaviour
     private RectTransform imageRect;
     private Vector2 screenSize;
 
-    private void private void Awake()
+    private void Awake()
     {
         screenSize = new Vector2(1170, 2532); //Default screen size (iphone12)
         targetImage = GetComponent<Image>();

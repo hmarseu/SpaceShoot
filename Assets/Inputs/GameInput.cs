@@ -71,6 +71,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shake"",
+                    ""type"": ""Value"",
+                    ""id"": ""3df6955c-47f2-42c7-8250-60eec05a7e3a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""FireMissile3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5809b0bf-a523-4663-b8eb-186be0419513"",
+                    ""path"": ""<Accelerometer>/acceleration/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_TestMoteur_FollowMouse = m_TestMoteur.FindAction("FollowMouse", throwIfNotFound: true);
         m_TestMoteur_FireMissile2 = m_TestMoteur.FindAction("FireMissile2", throwIfNotFound: true);
         m_TestMoteur_FireMissile3 = m_TestMoteur.FindAction("FireMissile3", throwIfNotFound: true);
+        m_TestMoteur_Shake = m_TestMoteur.FindAction("Shake", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_TestMoteur_FollowMouse;
     private readonly InputAction m_TestMoteur_FireMissile2;
     private readonly InputAction m_TestMoteur_FireMissile3;
+    private readonly InputAction m_TestMoteur_Shake;
     public struct TestMoteurActions
     {
         private @GameInput m_Wrapper;
@@ -216,6 +238,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @FollowMouse => m_Wrapper.m_TestMoteur_FollowMouse;
         public InputAction @FireMissile2 => m_Wrapper.m_TestMoteur_FireMissile2;
         public InputAction @FireMissile3 => m_Wrapper.m_TestMoteur_FireMissile3;
+        public InputAction @Shake => m_Wrapper.m_TestMoteur_Shake;
         public InputActionMap Get() { return m_Wrapper.m_TestMoteur; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,6 +263,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @FireMissile3.started += instance.OnFireMissile3;
             @FireMissile3.performed += instance.OnFireMissile3;
             @FireMissile3.canceled += instance.OnFireMissile3;
+            @Shake.started += instance.OnShake;
+            @Shake.performed += instance.OnShake;
+            @Shake.canceled += instance.OnShake;
         }
 
         private void UnregisterCallbacks(ITestMoteurActions instance)
@@ -259,6 +285,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @FireMissile3.started -= instance.OnFireMissile3;
             @FireMissile3.performed -= instance.OnFireMissile3;
             @FireMissile3.canceled -= instance.OnFireMissile3;
+            @Shake.started -= instance.OnShake;
+            @Shake.performed -= instance.OnShake;
+            @Shake.canceled -= instance.OnShake;
         }
 
         public void RemoveCallbacks(ITestMoteurActions instance)
@@ -283,5 +312,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnFollowMouse(InputAction.CallbackContext context);
         void OnFireMissile2(InputAction.CallbackContext context);
         void OnFireMissile3(InputAction.CallbackContext context);
+        void OnShake(InputAction.CallbackContext context);
     }
 }
