@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "InputReader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
-{
+public class InputReader : ScriptableObject //GameInput.IGameplayActions, GameInput.IUIActions
+{/*
     GameInput _gameInput;
     private void OnEnable()
     {
@@ -60,5 +60,5 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
             ResumeEvent?.Invoke();
             SetGameplay();
         }
-    }
+    }*/
 }

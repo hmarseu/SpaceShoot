@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18910599, g: 0.23105162, b: 0.19910261, a: 1}
+  m_IndirectSpecularColor: {r: 0.18959248, g: 0.23062879, b: 0.19839135, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -648,9 +648,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3595233456323026898, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595233456323026898, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595233456323026898, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595233456323026898, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772399609914994114, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772399609914994114, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772399609914994114, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772399609914994114, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5203467874835040239, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362396988898083188, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362396988898083188, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362396988898083188, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362396988898083188, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806201998949301711, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806201998949301711, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806201998949301711, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806201998949301711, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9104605816733704187, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
       propertyPath: gameManager

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
-{
+{/*
     [SerializeField] GameManagerInputs gameManager;
     [SerializeField] Button Pause;
     [SerializeField] Button Resume;
@@ -15,5 +15,5 @@ public class UIManager : MonoBehaviour
         Resume.onClick.AddListener(gameManager.HandleResume);
     }
     
-
+*/
 }

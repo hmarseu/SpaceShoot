@@ -25,6 +25,8 @@ public class ObjectPooling : MonoBehaviour
             projectile.SetActive(false);
             _projectiles.Add(projectile);
         }  
+
+        
     }
     public GameObject GetProjectile()
     {

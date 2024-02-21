@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6381353284233864449}
   - component: {fileID: -1817953361987426846}
   m_Layer: 0
-  m_Name: Missiles
+  m_Name: Missiles 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc62df97d1f135c4fb805fc592df49be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 2
 --- !u!212 &-1817953361987426846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bb5fedfcb0636d34aba64a644f576d42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02afdf97b5092bb42a6417e358c74019, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
