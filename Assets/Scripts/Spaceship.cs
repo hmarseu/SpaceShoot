@@ -9,13 +9,16 @@ public class Spaceship : MonoBehaviour
     [SerializeField] float _fireRate;
     [SerializeField] List<ShotPattern> _shotPatterns;
     [SerializeField] BoxCollider2D _boxCollider2D;
+    [SerializeField] GameObject _shield;
+    [SerializeField] SpriteRenderer _spriteRenderer;
 
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
     float _shootCooldown;
+    bool _hasShield;
     readonly List<Collider2D> _overlapResults = new List<Collider2D>();
-    
+
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
     public int Health
@@ -38,7 +41,16 @@ public class Spaceship : MonoBehaviour
         }
     }
 
-    public bool HasShield { get; set; }
+    public bool HasShield
+    {
+        get => _hasShield;
+        set
+        {
+            _hasShield = value;
+            _shield.SetActive(value);
+        }
+    }
+
     public int MaxMissileLevel => _shotPatterns.Count - 1;
     public int MissileLevel { get; set; }
 
@@ -166,5 +178,12 @@ public class Spaceship : MonoBehaviour
     public void SetInvincibilityFrame()
     {
         InvincibilityCountdown = _invincibilityDuration;
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        Invoke(nameof(ResetColor), _invincibilityDuration);
+    }
+
+    void ResetColor()
+    {
+        _spriteRenderer.color = Color.white;
     }
 }
