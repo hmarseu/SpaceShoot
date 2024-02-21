@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour
     [SerializeField] float _invincibilityDuration;
     [SerializeField] float _fireRate;
     [SerializeField] List<ShotPattern> _shotPatterns;
-
+    [SerializeField] GameObject Missile;
     int _health;
     int _bombCount;
     float _invincibilityCountdown;
@@ -109,7 +109,8 @@ public class Spaceship : MonoBehaviour
 
         for (var i = 0; i < pattern.MissileCount; i++)
         {
-            var missile = ObjectPooling.Instance.GetProjectile();
+            var missile = GlobalPoolObject.Instance.GetEmpty();
+            GlobalPoolObject.Instance.FuseComponents(Missile, missile);
             missile.transform.SetPositionAndRotation(
                 transform.position + pattern.Missiles[i].position, 
                 Quaternion.Euler(pattern.Missiles[i].direction)

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e183e4326e3a642a7edb9d913fc9db, type: 3}
-  m_Name: InputReaderMain
+  m_Script: {fileID: 11500000, guid: 6aac303a4fe2d7344bdd186f9c843eb1, type: 3}
+  m_Name: New Input Reader
   m_EditorClassIdentifier: 

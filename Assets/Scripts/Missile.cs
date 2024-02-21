@@ -40,7 +40,7 @@ public class Missile : MonoBehaviour
         if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
         {
             // Le missile est sorti de l'écran, vous pouvez exécuter une action ici (par exemple, détruire le missile)
-            _globalPooling.GetComponent<GlobalPoolObject>().ClearOneEmpty(gameObject);
+            GlobalPoolObject.Instance.ClearOneEmpty(gameObject);
 
             // Détruire le missile
             //Destroy(gameObject);

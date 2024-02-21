@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using static Spawner;
 
 public class Spawner : MonoBehaviour
 {
@@ -17,12 +19,20 @@ public class Spawner : MonoBehaviour
     Vector3 topRight;
     Vector3 topLeft;
 
+    GlobalPoolObject pool;
     
     bool waveFinished = false;
 
     EnDieCounter enDieCounter;
+    public delegate void BossAppear();
+    public static event BossAppear bossAppear;
+
+    public delegate void BossDesappear();
+    public static event BossDesappear bossDesappear;
+
     private void Start()
     {
+        pool = GlobalPoolObject.Instance;
         enDieCounter = GetComponent<EnDieCounter>();
         cam = Camera.main;
         topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.farClipPlane));
@@ -65,14 +75,20 @@ public class Spawner : MonoBehaviour
     }
     private void SpawneOneEnemy(int indexEnemy)
     {
+        Debug.Log($"la liste d'ennemi contient {currentWaveEnemys.Count} et nous en sommes a {indexEnemy}");
         float location = Random.Range(minX, maxX);
-        GameObject spawnee = EnnemyPooling.Instance.GetTurret();
-        spawnee.transform.position = new Vector3(location, topRight.y, 0);
-        int tryGolden = Random.Range(0, 100);
-        if (tryGolden<= chanceToBeGolden)
-        {
-            spawnee.TryGetComponent<SpriteRenderer>(out var rend);
-            rend.color = new Color(255, 215, 0);
+        GameObject spawnee = pool.GetEmpty();
+        if (currentWaveEnemys.Count >=indexEnemy)
+        {           
+            pool.MakeCopyFromPrefab(spawnee, currentWaveEnemys[indexEnemy]);
+          
+            spawnee.transform.position = new Vector3(location, topRight.y, 0);
+            int tryGolden = Random.Range(0, 100);
+            if (tryGolden<= chanceToBeGolden)
+            {
+                spawnee.TryGetComponent<SpriteRenderer>(out var rend);
+                rend.color = new Color(255, 215, 0);
+            }
         }
     }
 
@@ -82,15 +98,25 @@ public class Spawner : MonoBehaviour
         //event UI apparition de sa barre de santé 
         Debug.Log("on lance la bataille de boss");
         float location = Random.Range(minX, maxX);
-        GameObject spawnee = EnnemyPooling.Instance.GetTurret();
-        spawnee.transform.position = new Vector3(location, topRight.y, 0);
-        spawnee.name = "Boss";
+        GameObject Bspawnee = pool.GetEmpty();
+        if (bossWaves.Length!=0)
+        {
+            int rand = Random.Range(0, bossWaves.Length);
+            pool.MakeCopyFromPrefab(Bspawnee, bossWaves[rand].enemysInWave[0]);
+            Bspawnee.transform.position = new Vector3(location, topRight.y, 0);
+            Bspawnee.transform.localScale = new Vector3(2f, 2f, 1);
+            bossAppear();
+        }
+        else
+        {
+            DefeatBoss();
+        }
     }
 
     public void DefeatBoss()
     {
-       
-        waveCount++;
+        bossDesappear();
+         waveCount++;
         StartCoroutine(WaveControl());
     }
     IEnumerator WaveControl()
@@ -102,7 +128,7 @@ public class Spawner : MonoBehaviour
             if (enemyCount <= currentWaveEnemys.Count)
             {
                 yield return new WaitForSeconds(currentWave.timeBtwSpawn);
-                SpawneOneEnemy(enemyCount);
+                SpawneOneEnemy(enemyCount-1);
                     
                 enemyCount++;
                 enDieCounter.EnemyDie();

@@ -15,6 +15,7 @@ public class GlobalPoolObject : MonoBehaviour
 
     public GameObject EmptyPrefab;
     public GameObject MissilePrefab;
+    
 
     private void Awake()
     {
@@ -58,6 +59,36 @@ public class GlobalPoolObject : MonoBehaviour
         return newEmpty;
     }
 
+    public void MakeCopyFromPrefab(GameObject emptyObject, GameObject SpawnPrefab)
+    {
+        // Assurez-vous que l'objet vide et le prefab sont correctement référencés
+        if (emptyObject != null && SpawnPrefab != null)
+        {
+            // Effacez tous les composants de l'objet vide
+            foreach (Component comp in emptyObject.GetComponents<Component>())
+            {
+                if (!(comp is Transform))
+                {
+                    Destroy(comp);
+                }
+            }
+
+            // Clonez chaque composant du prefab sur l'objet vide
+            foreach (Component comp in SpawnPrefab.GetComponents<Component>())
+            {
+                if (!(comp is Transform))
+                {
+                    // Ajoutez une copie du composant du prefab à l'objet vide
+                    UnityEditorInternal.ComponentUtility.CopyComponent(comp);
+                    UnityEditorInternal.ComponentUtility.PasteComponentAsNew(emptyObject);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("L'objet vide ou le prefab est manquant.");
+        }
+    }
     public void FuseComponents(GameObject Prefab,GameObject emptyGameObject)
     {
         Component[] components = Prefab.GetComponents<Component>();

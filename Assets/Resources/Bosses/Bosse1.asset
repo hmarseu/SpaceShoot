@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e183e4326e3a642a7edb9d913fc9db, type: 3}
-  m_Name: InputReaderMain
+  m_Script: {fileID: 11500000, guid: b1654af9dd04a694a80fae6a8389a9a5, type: 3}
+  m_Name: Bosse1
   m_EditorClassIdentifier: 
+  timeBtwSpawn: 1
+  timeBtwWave: 5
+  enemysInWave:
+  - {fileID: 3751961440676705520, guid: 8893d4c711ba0d546be7de806f2c7ece, type: 3}

@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Resume;
     [SerializeField] Button Quit;
     [SerializeField] TextMeshProUGUI FpsCompteur;
-
+    [SerializeField] GameObject BossPanel;
     private void Start()
     {
         Pause.onClick.AddListener(gameManager.HandlePause);
@@ -20,13 +20,22 @@ public class UIManager : MonoBehaviour
         Quit.onClick.AddListener(Leave);
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 120;
+        Spawner.bossAppear += SpawnBoss;
+        Spawner.bossDesappear += DespawnBoss;
     }
     private void Leave()
     {
         gameManager.HandleResume();
         SceneManager.LoadScene(0);
     }
-
+    private void SpawnBoss()
+    {
+        BossPanel.SetActive(true);
+    }
+    private void DespawnBoss()
+    {
+        BossPanel.SetActive(false);
+    }
     private void Update()
     {
         //FpsCompteur.text = 
