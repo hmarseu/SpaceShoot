@@ -80,6 +80,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Testtts"",
+                    ""type"": ""Value"",
+                    ""id"": ""f58cf081-26c6-441c-a281-b8f0896b443a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Shake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa50bc2c-b38b-4a12-8a36-6ecbc2ad1e87"",
+                    ""path"": ""<AmbientTemperatureSensor>/ambientTemperature"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Testtts"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +182,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_TestMoteur_FireMissile2 = m_TestMoteur.FindAction("FireMissile2", throwIfNotFound: true);
         m_TestMoteur_FireMissile3 = m_TestMoteur.FindAction("FireMissile3", throwIfNotFound: true);
         m_TestMoteur_Shake = m_TestMoteur.FindAction("Shake", throwIfNotFound: true);
+        m_TestMoteur_Testtts = m_TestMoteur.FindAction("Testtts", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_TestMoteur_FireMissile2;
     private readonly InputAction m_TestMoteur_FireMissile3;
     private readonly InputAction m_TestMoteur_Shake;
+    private readonly InputAction m_TestMoteur_Testtts;
     public struct TestMoteurActions
     {
         private @GameInput m_Wrapper;
@@ -239,6 +261,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @FireMissile2 => m_Wrapper.m_TestMoteur_FireMissile2;
         public InputAction @FireMissile3 => m_Wrapper.m_TestMoteur_FireMissile3;
         public InputAction @Shake => m_Wrapper.m_TestMoteur_Shake;
+        public InputAction @Testtts => m_Wrapper.m_TestMoteur_Testtts;
         public InputActionMap Get() { return m_Wrapper.m_TestMoteur; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +289,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Shake.started += instance.OnShake;
             @Shake.performed += instance.OnShake;
             @Shake.canceled += instance.OnShake;
+            @Testtts.started += instance.OnTesttts;
+            @Testtts.performed += instance.OnTesttts;
+            @Testtts.canceled += instance.OnTesttts;
         }
 
         private void UnregisterCallbacks(ITestMoteurActions instance)
@@ -288,6 +314,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Shake.started -= instance.OnShake;
             @Shake.performed -= instance.OnShake;
             @Shake.canceled -= instance.OnShake;
+            @Testtts.started -= instance.OnTesttts;
+            @Testtts.performed -= instance.OnTesttts;
+            @Testtts.canceled -= instance.OnTesttts;
         }
 
         public void RemoveCallbacks(ITestMoteurActions instance)
@@ -313,5 +342,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnFireMissile2(InputAction.CallbackContext context);
         void OnFireMissile3(InputAction.CallbackContext context);
         void OnShake(InputAction.CallbackContext context);
+        void OnTesttts(InputAction.CallbackContext context);
     }
 }
