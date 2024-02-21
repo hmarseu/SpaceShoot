@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spaceship : MonoBehaviour
@@ -6,10 +7,7 @@ public class Spaceship : MonoBehaviour
     [SerializeField] int _baseHealth;
     [SerializeField] float _invincibilityDuration;
     [SerializeField] float _fireRate;
-
-    public GameObject missilePrefab;
-
-    public GameObject turretCannon;
+    [SerializeField] List<ShotPattern> _shotPatterns;
 
     int _health;
     int _bombCount;
@@ -95,13 +93,28 @@ public class Spaceship : MonoBehaviour
         loot.Use(this);
     }
 
+    [ContextMenu("Increment missile level")]
+    public void Increment()
+    {
+        MissileLevel++;
+
+        if (MissileLevel > 5)
+            MissileLevel = 0;
+    }
+
     [ContextMenu("Shoot")]
     public void Shoot()
     {
-        GameObject missile = ObjectPooling.Instance.GetProjectile();
-        missile.transform.position = turretCannon.transform.position;
-        missile.transform.rotation =  Quaternion.Euler(turretCannon.transform.rotation.x, turretCannon.transform.rotation.y, turretCannon.transform.rotation.z );
+        var pattern = _shotPatterns[MissileLevel];
 
+        for (var i = 0; i < pattern.MissileCount; i++)
+        {
+            var missile = ObjectPooling.Instance.GetProjectile();
+            missile.transform.SetPositionAndRotation(
+                transform.position + pattern.Missiles[i].position, 
+                Quaternion.Euler(pattern.Missiles[i].direction)
+            );
+        }
     }
 
     [ContextMenu("Hit")]
