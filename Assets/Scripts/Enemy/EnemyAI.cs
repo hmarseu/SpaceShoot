@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class EnemyAI : MonoBehaviour
 {
     public float speed = 3f;
+    public float rotationSpeed = 5f;
 
     public List<EnemyRoad> availableRoads = new List<EnemyRoad>();
     public EnemyRoad chosenRoad;
@@ -37,9 +38,24 @@ public class EnemyAI : MonoBehaviour
         if (currentWaypoint < chosenRoad.waypoints.Count)
         {
             Vector3 targetPosition = chosenRoad.waypoints[currentWaypoint].position;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-            if (transform.position == targetPosition)
+            // Direction vers le prochain waypoint
+            Vector3 directionToTarget = targetPosition - transform.position;
+
+            // Normalisez la direction pour avoir une longueur de 1, puis multipliez par la vitesse
+            Vector3 moveDirection = directionToTarget.normalized;
+            Vector3 newPosition = transform.position + moveDirection * speed * Time.deltaTime;
+
+            // Déplacer l'ennemi à la nouvelle position
+            transform.position = newPosition;
+
+            // Rotation progressive vers le waypoint sur l'axe Z uniquement
+            float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+            Quaternion rotationToTarget = Quaternion.Euler(0f, 0f, angle - 90f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotationToTarget, rotationSpeed * Time.deltaTime);
+
+            // Si la distance entre l'ennemi et le waypoint est inférieure à une petite valeur, passez au prochain waypoint
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
             {
                 currentWaypoint++;
             }
