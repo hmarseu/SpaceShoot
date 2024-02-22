@@ -30,6 +30,14 @@ public class Spawner : MonoBehaviour
     public delegate void BossDesappear();
     public static event BossDesappear bossDesappear;
 
+    private void OnEnable()
+    {
+        HitableBoss.bossdie += DefeatBoss;
+    }
+    private void OnDisable()
+    {
+        HitableBoss.bossdie -= DefeatBoss;
+    }
     private void Start()
     {
         pool = GlobalPoolObject.Instance;

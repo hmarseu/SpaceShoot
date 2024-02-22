@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 6924345507891073658}
   - component: {fileID: 2564448969788519909}
   - component: {fileID: 4628869919167353167}
+  - component: {fileID: -2939299748317677152}
+  - component: {fileID: -8971756110802149796}
+  - component: {fileID: 5114572332868044267}
   m_Layer: 0
   m_Name: Enemy SpaceShip
   m_TagString: Untagged
@@ -18,14 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6924345507891073658
-Transform:
+--- !u!224 &6924345507891073658
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7648871931813290191}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,6 +35,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.823, y: 0.681}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2564448969788519909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8593b7e0832364cb6e621542ed7d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2.5
   rotationSpeed: 5
   timeBetweenShots: 1
   missileSpeed: 0
@@ -105,3 +112,50 @@ MonoBehaviour:
   availableRoads: []
   chosenRoad: {fileID: 0}
   missilePrefab: {fileID: 5439042686419716248, guid: a4863dba078cb074ca21c1e64f5c2caa, type: 3}
+--- !u!114 &-2939299748317677152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648871931813290191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641a669e8a83570468281fc6a05bfbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LifePoint: 1
+--- !u!65 &-8971756110802149796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648871931813290191}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8230002, y: 0.6810002, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5114572332868044267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648871931813290191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fb2ad887cea8144ac9f1bbf01c93c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptToMinimumSize: 1

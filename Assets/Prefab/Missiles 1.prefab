@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6724725388815995317}
   - component: {fileID: -1817953361987426846}
   - component: {fileID: 6831732336109150041}
+  - component: {fileID: -439237055403386246}
   m_Layer: 0
   m_Name: Missiles 1
   m_TagString: Untagged
@@ -112,3 +113,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-439237055403386246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439042686419716248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf47a86d287e9949957b3dfdd76a294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

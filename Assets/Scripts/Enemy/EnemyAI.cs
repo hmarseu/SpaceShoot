@@ -12,13 +12,19 @@ public class EnemyAI : MonoBehaviour
 
     public bool canShoot;
 
+    public delegate void aiDied( Vector3 pos,bool gold);
+    public static event aiDied enemyDie;
+
     public List<EnemyRoad> availableRoads = new List<EnemyRoad>();
     public EnemyRoad chosenRoad;
 
     public GameObject missilePrefab;
 
     private int currentWaypoint = 0;
-
+    private void OnEnable()
+    {
+        UpdateAvailableRoads();
+    }
     void Start()
     {
         // Initialisation du temps écoulé depuis le dernier tir
@@ -80,6 +86,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             //Une fois le dernier waypoint atteint, détruis le GameObject
+            enemyDie(new Vector3(100, 100, 0), false);
             Destroy(gameObject);
         }
     }

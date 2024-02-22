@@ -61,6 +61,8 @@ public class GlobalPoolObject : MonoBehaviour
 
     public void MakeCopyFromPrefab(GameObject emptyObject, GameObject SpawnPrefab)
     {
+        emptyObject.tag = SpawnPrefab.tag;
+      
         Component[] components = emptyObject.GetComponents<Component>();
         foreach (var component in components)
         {
@@ -80,12 +82,47 @@ public class GlobalPoolObject : MonoBehaviour
             System.Type type = prefabComponent.GetType();
             Component copy = emptyObject.AddComponent(type);
 
-          
+            if (prefabComponent is BoxCollider)
+            {
+                BoxCollider originalBoxCollider = (BoxCollider)prefabComponent;
+                BoxCollider copyCollider = (BoxCollider)copy;
+                copyCollider.isTrigger = originalBoxCollider.isTrigger;
+            }
+            if (prefabComponent is Rigidbody)
+            {
+                Rigidbody original = (Rigidbody)prefabComponent;
+                Rigidbody copyy = (Rigidbody)copy;
+                copyy.useGravity = original.useGravity;
+            }
+            if (prefabComponent is Hitable)
+            {
+                Hitable originalHitable = (Hitable)prefabComponent;
+                Hitable copyHitable = (Hitable)copy;
+                copyHitable.LifePoint = originalHitable.LifePoint;
+            }
+            if (prefabComponent is HitableBoss)
+            {
+                HitableBoss originalHitable = (HitableBoss)prefabComponent;
+                HitableBoss copyHitable = (HitableBoss)copy;
+                copyHitable.LifePoint = originalHitable.LifePoint;
+                copyHitable.totalLP = originalHitable.totalLP;
+            }
             if (prefabComponent is SpriteRenderer)
             {
                 SpriteRenderer originalRenderer = (SpriteRenderer)prefabComponent;
                 SpriteRenderer copyRenderer = (SpriteRenderer)copy;
                 copyRenderer.sprite = originalRenderer.sprite;
+            }
+            if (prefabComponent is EnemyAI)
+            {
+                EnemyAI original = (EnemyAI)prefabComponent;
+                EnemyAI copyA = (EnemyAI)copy;
+                copyA.speed = original.speed;
+                copyA.rotationSpeed = original.rotationSpeed;
+                copyA.timeBetweenShots = original.timeBetweenShots;
+                copyA.canShoot = original.canShoot;
+                copyA.missilePrefab = original.missilePrefab;
+
             }
             else
             {
@@ -104,21 +141,28 @@ public class GlobalPoolObject : MonoBehaviour
 
     public void FuseComponents(GameObject Prefab,GameObject emptyGameObject)
     {
+        emptyGameObject.tag = Prefab.tag;
         Component[] components = Prefab.GetComponents<Component>();
         foreach (Component component in components)
         {
             //Debug.Log(component);
         }
         addComponent(emptyGameObject, components);
-        emptyGameObject.GetComponents<SpriteRenderer>()[0].sprite = Prefab.GetComponents<SpriteRenderer>()[0].sprite;
-        emptyGameObject.GetComponents<Missile>()[0].speed = Prefab.GetComponents<Missile>()[0].speed;
+        emptyGameObject.GetComponent<SpriteRenderer>().sprite = Prefab.GetComponent<SpriteRenderer>().sprite;
+        emptyGameObject.GetComponent<Missile>().speed = Prefab.GetComponent<Missile>().speed;
+        emptyGameObject.GetComponent<Rigidbody>().useGravity = false;
+        emptyGameObject.GetComponent<Rigidbody>().isKinematic = true;
+       
     }
 
     public void ClearOneEmpty(GameObject empty)
     {
         empty.SetActive(false);
+        empty.transform.position = Vector3.zero;
+        empty.transform.rotation = Quaternion.identity;
         //remove all components from the empty gameobject
         Component[] components = empty.GetComponents<Component>();
+        Destroy(empty.GetComponent<ResolutionAdapter>());
         foreach (Component component in components)
         {
             if (component.GetType() == typeof(Transform))
