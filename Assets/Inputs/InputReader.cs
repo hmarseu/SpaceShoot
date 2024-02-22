@@ -68,7 +68,7 @@ public class InputReader : ScriptableObject, GameInputMain.IGameplayActions, Gam
 
         if (context.phase == InputActionPhase.Performed)
         {
-            if(context.ReadValue<float>() > 1.0f || context.ReadValue<float>() < -1.0f) shakeManager.GetComponent<ShakeManager>().Shake();
+            if(context.ReadValue<float>() > 1.0f || context.ReadValue<float>() < -1.0f) shakeManager.GetComponent<ShakeManager>().Shake(context.ReadValue<float>());
         }
     }
 }

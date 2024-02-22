@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class ShakeManager : MonoBehaviour
 {
     public float delay = 0.5f;
+
+    public TextMeshProUGUI scoreText;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +22,7 @@ public class ShakeManager : MonoBehaviour
         delay -= Time.deltaTime;
     }
 
-    public void Shake()
+    public void Shake(float Value)
     {
         if (delay <= 0)
         {
@@ -31,7 +34,10 @@ public class ShakeManager : MonoBehaviour
 
             //vibrate the phone
             Handheld.Vibrate();
-            
+
+            //score
+            scoreText.text = Value.ToString();
+
         }
     }
 }
