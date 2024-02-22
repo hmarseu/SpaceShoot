@@ -28,6 +28,10 @@ public class ShakeManager : MonoBehaviour
             //color random pour le sprite
             player.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
             delay = 0.5f;
+
+            //vibrate the phone
+            Handheld.Vibrate();
+            
         }
     }
 }
