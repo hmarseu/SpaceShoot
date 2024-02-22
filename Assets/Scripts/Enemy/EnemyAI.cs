@@ -6,14 +6,25 @@ public class EnemyAI : MonoBehaviour
     public float speed = 3f;
     public float rotationSpeed = 5f;
 
+    public float timeBetweenShots = 1f; 
+    private float timeSinceLastShot = 0f;
+    public float missileSpeed;
+
+    public bool canShoot;
+
     public List<EnemyRoad> availableRoads = new List<EnemyRoad>();
     public EnemyRoad chosenRoad;
+
+    public GameObject missilePrefab;
 
     private int currentWaypoint = 0;
 
     void Start()
     {
-        // Choisissez aléatoirement une route parmi celles disponibles
+        // Initialisation du temps écoulé depuis le dernier tir
+        timeSinceLastShot = timeBetweenShots;
+
+        // Choisit aléatoirement une route parmi celles disponibles
         if (availableRoads.Count > 0)
         {
             int randomIndex = Random.Range(0, availableRoads.Count);
@@ -31,6 +42,12 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         MoveToWaypoint();
+
+        if (canShoot && Time.time - timeSinceLastShot > timeBetweenShots)
+        {
+            Shoot();
+            timeSinceLastShot = Time.time; // Met à jour le temps du dernier tir
+        }
     }
 
     void MoveToWaypoint()
@@ -42,11 +59,11 @@ public class EnemyAI : MonoBehaviour
             // Direction vers le prochain waypoint
             Vector3 directionToTarget = targetPosition - transform.position;
 
-            // Normalisez la direction pour avoir une longueur de 1, puis multipliez par la vitesse
+            // Permet d'avoir une vitesse constante entre chaque waypoint
             Vector3 moveDirection = directionToTarget.normalized;
             Vector3 newPosition = transform.position + moveDirection * speed * Time.deltaTime;
 
-            // Déplacer l'ennemi à la nouvelle position
+            // Déplace l'ennemi à la nouvelle position
             transform.position = newPosition;
 
             // Rotation progressive vers le waypoint sur l'axe Z uniquement
@@ -62,7 +79,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            // Le chemin est terminé, vous pouvez détruire l'ennemi ou gérer d'autres actions ici.
+            //Une fois le dernier waypoint atteint, détruis le GameObject
             Destroy(gameObject);
         }
     }
@@ -77,5 +94,16 @@ public class EnemyAI : MonoBehaviour
                 availableRoads.Add(enemyRoad);
             }
         }
+    }
+
+    void Shoot()
+    {
+        Debug.Log("L'ennemi tire !");
+
+        GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+
+        // Applique une force vers le bas pour simuler le mouvement du missile
+        Rigidbody2D missileRb = missile.GetComponent<Rigidbody2D>();
+        missileRb.AddForce(Vector2.down * missileSpeed, ForceMode2D.Impulse);
     }
 }
