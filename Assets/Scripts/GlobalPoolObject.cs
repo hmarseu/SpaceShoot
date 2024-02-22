@@ -61,34 +61,47 @@ public class GlobalPoolObject : MonoBehaviour
 
     public void MakeCopyFromPrefab(GameObject emptyObject, GameObject SpawnPrefab)
     {
-        // Assurez-vous que l'objet vide et le prefab sont correctement référencés
-        if (emptyObject != null && SpawnPrefab != null)
+        Component[] components = emptyObject.GetComponents<Component>();
+        foreach (var component in components)
         {
-            // Effacez tous les composants de l'objet vide
-            foreach (Component comp in emptyObject.GetComponents<Component>())
+            if (!(component is Transform))
             {
-                if (!(comp is Transform))
-                {
-                    Destroy(comp);
-                }
-            }
-
-            // Clonez chaque composant du prefab sur l'objet vide
-            foreach (Component comp in SpawnPrefab.GetComponents<Component>())
-            {
-                if (!(comp is Transform))
-                {
-                    // Ajoutez une copie du composant du prefab à l'objet vide
-                    UnityEditorInternal.ComponentUtility.CopyComponent(comp);
-                    UnityEditorInternal.ComponentUtility.PasteComponentAsNew(emptyObject);
-                }
+                Destroy(component);
             }
         }
-        else
+
+        Component[] prefabComponents = SpawnPrefab.GetComponents<Component>();
+        foreach (var prefabComponent in prefabComponents)
         {
-            Debug.LogError("L'objet vide ou le prefab est manquant.");
+        
+            if (prefabComponent is Transform)
+                continue;
+
+            System.Type type = prefabComponent.GetType();
+            Component copy = emptyObject.AddComponent(type);
+
+          
+            if (prefabComponent is SpriteRenderer)
+            {
+                SpriteRenderer originalRenderer = (SpriteRenderer)prefabComponent;
+                SpriteRenderer copyRenderer = (SpriteRenderer)copy;
+                copyRenderer.sprite = originalRenderer.sprite;
+            }
+            else
+            {
+                
+                System.Reflection.FieldInfo[] fields = type.GetFields();
+                foreach (System.Reflection.FieldInfo field in fields)
+                {
+                    field.SetValue(copy, field.GetValue(prefabComponent));
+                }
+            }
         }
     }
+
+
+  
+
     public void FuseComponents(GameObject Prefab,GameObject emptyGameObject)
     {
         Component[] components = Prefab.GetComponents<Component>();
