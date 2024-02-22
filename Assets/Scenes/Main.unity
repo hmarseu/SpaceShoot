@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18959248, g: 0.23062879, b: 0.19839135, a: 1}
+  m_IndirectSpecularColor: {r: 0.18910599, g: 0.23105162, b: 0.19910261, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -410,6 +410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 462260469576106529, guid: 5924dc83f2ab3474e84ce7490e1334f6, type: 3}
+      propertyPath: chanceToBeGolden
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1288784726814224750, guid: 5924dc83f2ab3474e84ce7490e1334f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -750,6 +754,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyInWave: 10
   enemyDied: 0
+  Loots:
+  - {fileID: 8141362241293945135, guid: 5d9bb2993b602a4429671cffea419c22, type: 3}
+  - {fileID: 4559160308639834723, guid: 41009c7f986f81a49b3d50d8874966e9, type: 3}
+  - {fileID: 576160450877624974, guid: 1ff64f09d62ca4847b20147e312d785f, type: 3}
+  - {fileID: 2719924382305751626, guid: bc62e5a999c4f054b93ca42d47cc7c29, type: 3}
 --- !u!1 &483865817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4355404192593334610, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
@@ -1059,6 +1068,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adaptToMinimumSize: 1
+--- !u!1 &1464558900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2212386461104721474, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+  m_PrefabInstance: {fileID: 5510543148536616516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528615249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,9 +1371,10 @@ GameObject:
   - component: {fileID: 1666211916}
   - component: {fileID: 1666211917}
   - component: {fileID: 1666211918}
+  - component: {fileID: 1666211919}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1514,6 +1529,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: d09bfd612d935e24aa620f21c2644fd6, type: 2}
   speed: 10
+--- !u!54 &1666211919
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666211906}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1810260395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,6 +2381,10 @@ PrefabInstance:
       propertyPath: BossPanel
       value: 
       objectReference: {fileID: 205542316}
+    - target: {fileID: 9104605816733704187, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
+      propertyPath: BossLifeBar
+      value: 
+      objectReference: {fileID: 1464558900}
     - target: {fileID: 9104605816733704187, guid: 18fbd7492ba44bc4c8ed83e6c845d35d, type: 3}
       propertyPath: gameManager
       value: 

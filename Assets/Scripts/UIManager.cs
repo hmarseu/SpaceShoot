@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static HitableBoss;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Quit;
     [SerializeField] TextMeshProUGUI FpsCompteur;
     [SerializeField] GameObject BossPanel;
+    [SerializeField] GameObject BossLifeBar;
     private void Start()
     {
         Pause.onClick.AddListener(gameManager.HandlePause);
@@ -20,8 +22,21 @@ public class UIManager : MonoBehaviour
         Quit.onClick.AddListener(Leave);
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 120;
+        
+    }
+    private void OnEnable()
+    {
         Spawner.bossAppear += SpawnBoss;
         Spawner.bossDesappear += DespawnBoss;
+
+        HitableBoss.bossTakeHit += takehit;
+    }
+    private void OnDisable()
+    {
+        Spawner.bossAppear -= SpawnBoss;
+        Spawner.bossDesappear -= DespawnBoss;
+
+        HitableBoss.bossTakeHit -= takehit;
     }
     private void Leave()
     {
@@ -35,6 +50,7 @@ public class UIManager : MonoBehaviour
     private void DespawnBoss()
     {
         BossPanel.SetActive(false);
+        BossLifeBar.transform.localScale = new Vector3(1, 1);
     }
     private void Update()
     {
@@ -43,5 +59,9 @@ public class UIManager : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 100, 50), "FPS: " + (int)(1.0f / Time.smoothDeltaTime));
+    }
+    void takehit(int lp,int totallp)
+    {
+        BossLifeBar.transform.localScale =new Vector3( lp / totallp,1);
     }
 }
