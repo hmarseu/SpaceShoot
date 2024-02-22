@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] InputReader input;
-    [SerializeField] float speed;
-    [SerializeField] Camera camera;
+    public float speed;
+    Camera camera;
 
     Vector2 _moveDirection;
 

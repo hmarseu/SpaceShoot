@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
 
     void OnEnable()
     {
+        Spaceship = GameObject.FindAnyObjectByType<Spaceship>();
         _gameManager.ScoreChanged += OnScoreChanged;
         Spaceship.HealthChanged += OnHealthChanged;
         Spaceship.BombCountChanged += OnBombCountChanged;
@@ -37,7 +38,7 @@ public class GameUI : MonoBehaviour
 
     public void ResetUI()
     {
-        _scoreText.text = $"Score : {_gameManager.Score}";
+        _scoreText.text = $" {_gameManager.Score}";
         _healthText.text = $"Santé : {Spaceship.Health}";
         _bombText.text = $"Bombe : {Spaceship.BombCount}";
         _invincibilityText.text = $"Invincibilité : {Spaceship.InvincibilityCountdown}s";

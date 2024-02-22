@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "InputReader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
+public class InputReader : ScriptableObject, GameInputMain.IGameplayActions, GameInputMain.IUIActions
 {
-    GameInput _gameInput;
+    GameInputMain _gameInput;
     private void OnEnable()
     {
         if (_gameInput == null)

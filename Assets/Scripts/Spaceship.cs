@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 public class Spaceship : MonoBehaviour
 {
     [SerializeField] int _baseHealth;
@@ -13,7 +14,8 @@ public class Spaceship : MonoBehaviour
     int _bombCount;
     float _invincibilityCountdown;
     float _shootCooldown;
-    
+    PlayerController pc;
+
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
     public int Health
@@ -58,6 +60,8 @@ public class Spaceship : MonoBehaviour
 
     void Awake()
     {
+        pc = GetComponent<PlayerController>();
+        pc.speed = 10;
         Health = _baseHealth;
     }
 
