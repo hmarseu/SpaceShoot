@@ -33,11 +33,11 @@ public class GlobalPoolObject : MonoBehaviour
             empty.SetActive(false);
             _gameobject.Add(empty);
 
-            if (i == 0)
-            {
-                FuseComponents(MissilePrefab, empty);
-                empty.SetActive(true);
-            }
+            //if (i == 0)
+            //{
+            //    FuseComponents(MissilePrefab, empty);
+            //    empty.SetActive(true);
+            //}
         }  
 
     }

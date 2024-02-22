@@ -324,7 +324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spaceshipPrefab: {fileID: 7845219143966617982, guid: 89ee3f8f25d164b42ae2b4ba786b3e27, type: 3}
   _gameUI: {fileID: 481759095}
-  _mainMenu: {fileID: 7472011543504341815}
+  _input: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!4 &358029381
 Transform:
   m_ObjectHideFlags: 0
@@ -651,17 +652,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 064290b662165c7428fa870c9530ebe1, type: 3}
---- !u!114 &7472011543504341815 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 159979827216641062, guid: 064290b662165c7428fa870c9530ebe1, type: 3}
-  m_PrefabInstance: {fileID: 7472011543504341814}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82bde09432224657a24f5ad580a56bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -138,7 +138,7 @@ public class Spawner : MonoBehaviour
                 SpawneOneEnemy(enemyCount-1);
                     
                 enemyCount++;
-                enDieCounter.EnemyDie();
+                //enDieCounter.EnemyDie();
 
 
             }

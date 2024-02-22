@@ -7,7 +7,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameManagerInputs gameManager;
+    [SerializeField] GameManager gameManager;
     [SerializeField] Button Pause;
     [SerializeField] Button Resume;
     [SerializeField] Button Quit;

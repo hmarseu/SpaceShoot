@@ -5,10 +5,38 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Spaceship _spaceshipPrefab;
     [SerializeField] GameUI _gameUI;
-    [SerializeField] MainMenu _mainMenu;
+    //[SerializeField] MainMenu _mainMenu;
 
     int _score;
     int _enemyKilledCount;
+
+
+
+    [SerializeField] private InputReader _input;
+    [SerializeField] GameObject pauseMenu;
+
+    bool _isPause = false;
+
+    private void Start()
+    {
+        _input.PauseEvent += HandlePause;
+        _input.ResumeEvent += HandleResume;
+
+    }
+
+    public void HandleResume()
+    {
+        _isPause = false;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+    }
+
+    public void HandlePause()
+    {
+        _isPause = true;
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
 
     public int Score
     {
@@ -35,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
+       NewGame();
         Spaceship.SpaceshipDied += OnSpaceshipDied;
     }
 
@@ -47,8 +76,8 @@ public class GameManager : MonoBehaviour
     {
         Score = 0;
         EnemyKilledCount = 0;
-        var spaceship = Instantiate(_spaceshipPrefab);
-        _gameUI.Spaceship = spaceship;
+        //var spaceship = Instantiate(_spaceshipPrefab);
+        _gameUI.Spaceship = GameObject.FindAnyObjectByType<Spaceship>();
         _gameUI.ResetUI();
         _gameUI.gameObject.SetActive(true);
     }
@@ -56,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         _gameUI.gameObject.SetActive(false);
-        _mainMenu.gameObject.SetActive(true);
+        //_mainMenu.gameObject.SetActive(true);
     }
 
     void OnSpaceshipDied(Spaceship spaceship)
