@@ -6,6 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class ResolutionAdapter : MonoBehaviour
 {
+    [Tooltip("If true, the highest resize value will be reavaluated to match the lower one according with the ratio. Objects might appear smaller on different resolutions.")]
+    public bool adaptToMinimumSize = true;
+
     private Image targetImage;
     private RectTransform imageRect;
     private RectTransform prevImageRect;
@@ -50,10 +53,13 @@ public class ResolutionAdapter : MonoBehaviour
         float newScaleY = prevScale.y * Screen.height / screenSize.y;
 
         float min = Mathf.Min(newScaleX, newScaleY);
+
         if (min == newScaleX) {
-            newScaleY = (1 / rap) * newScaleX;
+            if (adaptToMinimumSize) newScaleY = (1 / rap) * newScaleX;
+            else newScaleX = rap * newScaleY;
         } else {
-            newScaleX = rap * newScaleY;
+            if (adaptToMinimumSize) newScaleX = rap * newScaleY;
+            else newScaleY = (1 / rap) * newScaleX;
         }
 
         imageRect.anchoredPosition = new Vector2(posX, posY);
@@ -77,9 +83,11 @@ public class ResolutionAdapter : MonoBehaviour
         float min = Mathf.Min(newWidth, newHeight);
 
         if (min == newWidth) {
-            newHeight = (1 / rap) * newWidth;
+            if (adaptToMinimumSize) newHeight = (1 / rap) * newWidth;
+            else newWidth = rap * newHeight;
         } else {
-            newWidth = rap * newHeight;
+            if (adaptToMinimumSize) newWidth = rap * newHeight;
+            else newHeight = (1 / rap) * newWidth;
         }
 
         boxCollider.size = new Vector3(newWidth, newHeight, boxCollider.size.z);
@@ -101,9 +109,11 @@ public class ResolutionAdapter : MonoBehaviour
         float min = Mathf.Min(newWidth, newHeight);
 
         if (min == newWidth) {
-            newHeight = (1 / rap) * newWidth;
+            if (adaptToMinimumSize) newHeight = (1 / rap) * newWidth;
+            else newWidth = rap * newHeight;
         } else {
-            newWidth = rap * newHeight;
+            if (adaptToMinimumSize) newWidth = rap * newHeight;
+            else newHeight = (1 / rap) * newWidth;
         }
 
         boxCollider2D.size = new Vector2(newWidth, newHeight);
