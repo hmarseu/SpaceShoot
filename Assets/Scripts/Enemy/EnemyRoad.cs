@@ -7,7 +7,7 @@ public class EnemyRoad : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Ajouter tous les enfants de EnemyRoad à la liste des waypoints
         foreach (Transform child in transform)
