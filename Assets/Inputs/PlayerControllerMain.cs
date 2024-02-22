@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Vector3 bottomLeft = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.farClipPlane));
         Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, camera.farClipPlane));
        
-        // Définir les limites de déplacement du joueur en fonction de la vue de la caméra
+        // Dï¿½finir les limites de dï¿½placement du joueur en fonction de la vue de la camï¿½ra
         minX = bottomLeft.x;
         maxX = topRight.x;
         minY = bottomLeft.y;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         // Appliquer les limites verticales
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
 
-        // Déplacer le joueur vers la nouvelle position
+        // Dï¿½placer le joueur vers la nouvelle position
         transform.position = newPosition;
     }
     

@@ -61,4 +61,14 @@ public class InputReader : ScriptableObject, GameInputMain.IGameplayActions, Gam
             SetGameplay();
         }
     }
+
+    public void OnShake(InputAction.CallbackContext context)
+    {
+        GameObject shakeManager = GameObject.Find("Shake Manager");
+
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if(context.ReadValue<float>() > 1.0f || context.ReadValue<float>() < -1.0f) shakeManager.GetComponent<ShakeManager>().Shake();
+        }
+    }
 }
