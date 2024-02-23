@@ -107,7 +107,7 @@ MonoBehaviour:
   EnemyDie: 0
   speed: 2.5
   rotationSpeed: 5
-  timeBetweenShots: 0.25
+  timeBetweenShots: 0.75
   missileSpeed: 0
   canShoot: 1
   availableRoads: []

@@ -115,6 +115,7 @@ public class GlobalPoolObject : MonoBehaviour
                 SpriteRenderer originalRenderer = (SpriteRenderer)prefabComponent;
                 SpriteRenderer copyRenderer = (SpriteRenderer)copy;
                 copyRenderer.sprite = originalRenderer.sprite;
+                copyRenderer.flipY = originalRenderer.flipY;
             }
             if (prefabComponent is EnemyAI)
             {
@@ -160,6 +161,7 @@ public class GlobalPoolObject : MonoBehaviour
 
     public void ClearOneEmpty(GameObject empty)
     {
+        empty.transform.localScale = Vector3.one;
         empty.SetActive(false);
         empty.transform.position = Vector3.zero;
         empty.transform.rotation = Quaternion.identity;
@@ -186,6 +188,10 @@ public class GlobalPoolObject : MonoBehaviour
         {
             //exept the transform component
             if (component.GetType() == typeof(Transform))
+            {
+                continue;
+            }
+            if (component.GetType() == typeof(RectTransform))
             {
                 continue;
             }

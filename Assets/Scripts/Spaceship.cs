@@ -16,6 +16,7 @@ public class Spaceship : MonoBehaviour
     float _invincibilityCountdown;
     float _shootCooldown;
     PlayerController pc;
+    bool IsInvincible;
 
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
@@ -58,7 +59,7 @@ public class Spaceship : MonoBehaviour
         }
     }
 
-    public bool IsInvincible => InvincibilityCountdown > 0;
+    //public bool IsInvincible => InvincibilityCountdown > 0;
     
     public Action<int> HealthChanged { get; set; }
     public Action<int> BombCountChanged { get; set; }
@@ -73,7 +74,7 @@ public class Spaceship : MonoBehaviour
     void Update()
     {
         //ElapseShootCooldown();
-        ElapseInvincibilityCountdown();
+        //ElapseInvincibilityCountdown();
 
         //void ElapseShootCooldown()
         //{
@@ -87,11 +88,11 @@ public class Spaceship : MonoBehaviour
         //    _shootCooldown += _fireRate;
         //}
 
-        void ElapseInvincibilityCountdown()
-        {
-            if (InvincibilityCountdown > 0)
-                InvincibilityCountdown -= Time.deltaTime;
-        }
+        //void ElapseInvincibilityCountdown()
+        //{
+        //    if (InvincibilityCountdown > 0)
+        //        InvincibilityCountdown -= Time.deltaTime;
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -147,15 +148,15 @@ public class Spaceship : MonoBehaviour
     [ContextMenu("Hit")]
     public void Hit()
     {
-        //if (IsInvincible)
-        //    return;
-        
+        if (IsInvincible)
+            return;
+
         //if (HasShield)
         //{
         //    HasShield = false;
         //    return;
         //}
-
+        StartCoroutine(Gettouch());
         Health--;
         MissileLevel = 0;
         
@@ -184,9 +185,36 @@ public class Spaceship : MonoBehaviour
         if (other.gameObject.tag == "BotMissile")
         {
             Hit();
-            Debug.Log("aie");
+           // Debug.Log("aie");
             GlobalPoolObject.Instance.ClearOneEmpty(other.gameObject);
             //Destroy(other.gameObject);
         }
+    }
+    IEnumerator Gettouch()
+    {
+        IsInvincible = true;
+        bool color = true;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color Corigine = spriteRenderer.color;
+        if (spriteRenderer != null)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (color)
+                {
+                    spriteRenderer.color = Color.red;
+                    color = false;
+                }
+                else 
+                {
+                    spriteRenderer.color = Corigine;
+                    color = true;
+                }
+                yield return new WaitForSeconds(0.25f);
+                
+            }
+        }
+        IsInvincible = false;
+        yield return null;
     }
 }

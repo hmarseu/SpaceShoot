@@ -125,7 +125,7 @@ public class Spawner : MonoBehaviour
         {
             int rand = Random.Range(0, bossWaves.Length);
             pool.MakeCopyFromPrefab(Bspawnee, bossWaves[rand].enemysInWave[0]);
-            Debug.Log(bossWaves[rand].enemysInWave[0]);
+           // Debug.Log(bossWaves[rand].enemysInWave[0]);
             Bspawnee.transform.position = new Vector3(location, topRight.y, 0);
             //Bspawnee.transform.localScale = new Vector3(2f, 2f, 1);
             bossAppear();
@@ -138,14 +138,21 @@ public class Spawner : MonoBehaviour
 
     public void DefeatBoss()
     {
+        waveFinished = true;
         bossDesappear();
-         waveCount++;
+        waveCount++;
         StartCoroutine(WaveControl());
     }
     IEnumerator WaveControl()
     {
         while (true) 
         {
+            Debug.Log($@"vague {waveCount}");
+            if (waveCount % 3 == 0 && waveFinished)
+            {
+                BossFight();
+                yield return null;
+            }
             
             if (enemyCount <= currentWaveEnemys.Count)
             {
@@ -153,37 +160,16 @@ public class Spawner : MonoBehaviour
                 SpawneOneEnemy(enemyCount-1);
                     
                 enemyCount++;
-                //enDieCounter.EnemyDie();
-
-
+                yield return null;
             }
-            else if(waves.Length >= waveCount + 1)
-            {
-              
-                if (waveCount % 3 == 0)
-                {
-                    BossFight();
-                }
-                else
-                { 
-                    if (waveFinished)
-                    {
-                       
-                        yield return new WaitForSeconds(currentWave.timeBtwWave);
-                        passToNextWave();
-                    }
-                
-                }
+            else if(waves.Length >= waveCount + 1 && waveFinished)
+            {                 
+                yield return new WaitForSeconds(currentWave.timeBtwWave);
+                passToNextWave();
+                yield return null;
             }
             else if (waveFinished) 
             {
-              
-                if (waveCount % 3 == 0)
-                {
-                    BossFight();
-                }
-                else
-                {
                     waveCount++;
                     currentWave.timeBtwSpawn /= 1.2f;
                     currentWave.timeBtwWave /= 1.2f;
@@ -191,11 +177,9 @@ public class Spawner : MonoBehaviour
                     enemyCount = 1;
                     waveFinished = false;
                     enDieCounter.SetEnemyInWave(currentWaveEnemys.Count);
-                }
+                    yield return new WaitForSeconds(currentWave.timeBtwWave);
             }
             yield return null;
-
-            
         }
     }
 }

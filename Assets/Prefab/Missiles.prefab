@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1817953361987426846}
   - component: {fileID: -7440947723495430649}
   - component: {fileID: -7909878956419630118}
+  - component: {fileID: 2511697863277609412}
   m_Layer: 6
   m_Name: Missiles
   m_TagString: PlayerMissile
@@ -20,21 +21,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6724725388815995317
-Transform:
+--- !u!224 &6724725388815995317
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5439042686419716248}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000040244, y: 0.04, z: -0.000000068898}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000000068898}
   m_LocalScale: {x: 0.32481876, y: 0.32481876, z: 0.32481876}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000000040244, y: 0.04}
+  m_SizeDelta: {x: 0.43666667, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6381353284233864449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,9 +147,22 @@ Rigidbody:
     serializedVersion: 2
     m_Bits: 64
   m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2511697863277609412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439042686419716248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fb2ad887cea8144ac9f1bbf01c93c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptToMinimumSize: 1
