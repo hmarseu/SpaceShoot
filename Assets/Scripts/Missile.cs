@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    [SerializeField] public float speed = 5f; // Vitesse du missile
+    [SerializeField] public float speed = 10f; // Vitesse du missile
 
     private GameObject _globalPooling;
     void Start()

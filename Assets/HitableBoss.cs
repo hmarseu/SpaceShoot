@@ -8,6 +8,9 @@ public class HitableBoss : MonoBehaviour
     public int LifePoint;
     public int totalLP;
 
+    public delegate void Score(int score);
+    public static event Score score;
+
     public delegate void DiedBoss();
     public static event DiedBoss bossdie;
 
@@ -42,7 +45,7 @@ public class HitableBoss : MonoBehaviour
         Debug.Log("EnnemyMort");
         bossdie();
 
-
+        score(30);
         GlobalPoolObject.Instance.ClearOneEmpty(this.gameObject);
     }
 }

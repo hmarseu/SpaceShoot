@@ -86,17 +86,24 @@ public class Spawner : MonoBehaviour
         
         float location = Random.Range(minX, maxX);
         GameObject spawnee = pool.GetEmpty();
-        if (currentWaveEnemys.Count >=indexEnemy)
-        {           
-            pool.MakeCopyFromPrefab(spawnee, currentWaveEnemys[indexEnemy]);
+        if (spawnee!=null)
+        {
+            if (currentWaveEnemys.Count >=indexEnemy)
+            {           
+                pool.MakeCopyFromPrefab(spawnee, currentWaveEnemys[indexEnemy]);
           
-            spawnee.transform.position = new Vector3(location, topRight.y, 0);
-            int tryGolden = Random.Range(0, 100);
-            if (tryGolden<= chanceToBeGolden)
-            {
-                spawnee.TryGetComponent<SpriteRenderer>(out var rend);
-                rend.color = new Color(255, 215, 0);
+                spawnee.transform.position = new Vector3(location, topRight.y, 0);
+                int tryGolden = Random.Range(0, 100);
+                if (tryGolden<= chanceToBeGolden)
+                {
+                    spawnee.TryGetComponent<SpriteRenderer>(out var rend);
+                    rend.color = new Color(255, 215, 0);
+                }
             }
+        }
+        else
+        {
+            SpawneOneEnemy(indexEnemy);
         }
     }
 
@@ -120,7 +127,7 @@ public class Spawner : MonoBehaviour
             pool.MakeCopyFromPrefab(Bspawnee, bossWaves[rand].enemysInWave[0]);
             Debug.Log(bossWaves[rand].enemysInWave[0]);
             Bspawnee.transform.position = new Vector3(location, topRight.y, 0);
-            Bspawnee.transform.localScale = new Vector3(2f, 2f, 1);
+            //Bspawnee.transform.localScale = new Vector3(2f, 2f, 1);
             bossAppear();
         }
         else

@@ -4,9 +4,30 @@ using UnityEngine;
 
 public class missileBot : MonoBehaviour
 {
+    [SerializeField]
+    public float speed = 10f;
     private void Update()
     {
+        MoveBackWard();
         CheckOutOfScreen();
+    }
+
+    
+    
+      
+        
+    
+
+    private void MoveBackWard()
+    {
+        // Obtenir la rotation initiale du missile
+        Quaternion initialRotation = transform.rotation;
+
+        // Convertir la rotation en vecteur direction
+        Vector3 forwardDirection = initialRotation * Vector3.down;
+
+        // Déplacer le missile dans la direction vers l'avant
+        transform.position += forwardDirection * speed * Time.deltaTime;
     }
     private void CheckOutOfScreen()
     {

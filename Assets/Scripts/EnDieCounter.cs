@@ -19,6 +19,7 @@ public class EnDieCounter : MonoBehaviour
     private void OnDisable()
     {
         Hitable.enemyDie -= EnemyDie;
+        EnemyAI.enemyDie -= EnemyDie;
     }
     private void Start()
     {

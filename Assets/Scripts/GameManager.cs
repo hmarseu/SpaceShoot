@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         _gameUI.gameObject.SetActive(false);
+        SceneManager.LoadScene(0);
         //_mainMenu.gameObject.SetActive(true);
     }
 

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   rotationSpeed: 5
-  timeBetweenShots: 1
+  timeBetweenShots: 0.5
   missileSpeed: 0
   canShoot: 1
   availableRoads: []

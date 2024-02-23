@@ -46,7 +46,7 @@ public class GlobalPoolObject : MonoBehaviour
     {
         for (int i = 0 ; i < _gameobject.Count; i++)
         {
-            if (!_gameobject[i].activeInHierarchy)
+            if (!_gameobject[i].activeInHierarchy && _gameobject[i] != null)
             {
                 _gameobject[i].SetActive(true);
                 return _gameobject[i];
@@ -62,6 +62,7 @@ public class GlobalPoolObject : MonoBehaviour
     public void MakeCopyFromPrefab(GameObject emptyObject, GameObject SpawnPrefab)
     {
         emptyObject.tag = SpawnPrefab.tag;
+        emptyObject.layer = SpawnPrefab.layer;
       
         Component[] components = emptyObject.GetComponents<Component>();
         foreach (var component in components)
@@ -93,6 +94,8 @@ public class GlobalPoolObject : MonoBehaviour
                 Rigidbody original = (Rigidbody)prefabComponent;
                 Rigidbody copyy = (Rigidbody)copy;
                 copyy.useGravity = original.useGravity;
+                copyy.excludeLayers = original.excludeLayers;
+                copyy.isKinematic = original.isKinematic;
             }
             if (prefabComponent is Hitable)
             {
@@ -166,6 +169,10 @@ public class GlobalPoolObject : MonoBehaviour
         foreach (Component component in components)
         {
             if (component.GetType() == typeof(Transform))
+            {
+                continue;
+            }
+            if (component.GetType() == typeof(RectTransform))
             {
                 continue;
             }

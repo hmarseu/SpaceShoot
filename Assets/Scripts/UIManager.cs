@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Pause;
     [SerializeField] Button Resume;
     [SerializeField] Button Quit;
-    [SerializeField] TextMeshProUGUI FpsCompteur;
+    //[SerializeField] TextMeshProUGUI FpsCompteur;
     [SerializeField] GameObject BossPanel;
     [SerializeField] GameObject BossLifeBar;
     private void Start()

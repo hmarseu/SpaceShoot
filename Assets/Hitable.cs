@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Hitable : MonoBehaviour
 {
-  
+    EnemyAI EnemyAI;
     public int LifePoint;
+
+    public delegate void Score(int score);
+    public static event Score score;
 
     public delegate void Died(Vector3 position,bool isgolden);
     public static event Died enemyDie;
     bool isGolden;
     void Start()
     {
-     
+     EnemyAI = GetComponent<EnemyAI>();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -28,6 +31,7 @@ public class Hitable : MonoBehaviour
         LifePoint--;
         if (LifePoint <= 0 )
         {
+            EnemyAI.EnemyDie = true;
             Die();
         }
     }
@@ -43,6 +47,7 @@ public class Hitable : MonoBehaviour
             isGolden = false;
         }
         enemyDie(transform.position, isGolden);
+        score(10);
         GlobalPoolObject.Instance.ClearOneEmpty(this.gameObject);
     }
 }

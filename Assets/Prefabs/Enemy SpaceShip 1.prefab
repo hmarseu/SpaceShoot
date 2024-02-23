@@ -104,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8593b7e0832364cb6e621542ed7d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyDie: 0
   speed: 2.5
   rotationSpeed: 5
-  timeBetweenShots: 1
+  timeBetweenShots: 0.25
   missileSpeed: 0
   canShoot: 1
   availableRoads: []

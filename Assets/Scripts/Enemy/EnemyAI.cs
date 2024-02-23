@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+//using static UnityEditor.FilePathAttribute;
 
 public class EnemyAI : MonoBehaviour
 {
+    public bool EnemyDie = false;
     public float speed = 3f;
     public float rotationSpeed = 5f;
 
@@ -19,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     public EnemyRoad chosenRoad;
 
     public GameObject missilePrefab;
-
+    GlobalPoolObject pool;
     private int currentWaypoint = 0;
     private void OnEnable()
     {
@@ -27,6 +30,7 @@ public class EnemyAI : MonoBehaviour
     }
     void Start()
     {
+        pool = GlobalPoolObject.Instance;
         // Initialisation du temps écoulé depuis le dernier tir
         timeSinceLastShot = timeBetweenShots;
 
@@ -41,7 +45,11 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Aucune route disponible pour l'ennemi.");
+            //Debug.LogError("Aucune route disponible pour l'ennemi.");
+        }
+        if (canShoot)
+        {
+            StartCoroutine(CoShoot());
         }
     }
 
@@ -49,11 +57,6 @@ public class EnemyAI : MonoBehaviour
     {
         MoveToWaypoint();
 
-        if (canShoot && Time.time - timeSinceLastShot > timeBetweenShots)
-        {
-            Shoot();
-            timeSinceLastShot = Time.time; // Met à jour le temps du dernier tir
-        }
     }
 
     void MoveToWaypoint()
@@ -85,9 +88,11 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            //Une fois le dernier waypoint atteint, détruis le GameObject
-            enemyDie(new Vector3(100, 100, 0), false);
-            Destroy(gameObject);
+            ////Une fois le dernier waypoint atteint, détruis le GameObject
+            //enemyDie(new Vector3(100, 100, 0), false);
+            //GlobalPoolObject.Instance.ClearOneEmpty(gameObject);
+            currentWaypoint = 0;
+            Start();
         }
     }
 
@@ -102,15 +107,42 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+    IEnumerator CoShoot()
+    {
+       
+        while (true)
+        {
+            if (EnemyDie)
+            {
+                StopCoroutine(CoShoot());
+            }
+            yield return new WaitForSeconds(timeBetweenShots);
+            Shoot();
+            yield return null;
 
+        }
+
+        
+    }
     void Shoot()
     {
-        Debug.Log("L'ennemi tire !");
+       // Debug.Log("L'ennemi tire !");
 
-        GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+        // GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+        GameObject missile = pool.GetEmpty();
+        if (missile != null)
+        {
+            pool.MakeCopyFromPrefab(missile, missilePrefab);
 
-        // Applique une force vers le bas pour simuler le mouvement du missile
-        Rigidbody2D missileRb = missile.GetComponent<Rigidbody2D>();
-        missileRb.AddForce(Vector2.down * missileSpeed, ForceMode2D.Impulse);
+            missile.transform.position = transform.position;
+
+            // Applique une force vers le bas pour simuler le mouvement du missile
+            //Rigidbody missileRb = missile.GetComponent<Rigidbody>();
+            //missileRb.AddForce(Vector2.down * missileSpeed,ForceMode.Impulse);
+        }
+        else
+        {
+            Shoot();
+        }
     }
 }

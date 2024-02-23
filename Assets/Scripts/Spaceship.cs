@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class Spaceship : MonoBehaviour
 
     public static Action<Spaceship> SpaceshipDied { get; set; }
 
+    private void Start()
+    {
+        StartCoroutine(CoShoot());
+    }
     public int Health
     {
         get => _health;
@@ -67,20 +72,20 @@ public class Spaceship : MonoBehaviour
 
     void Update()
     {
-        ElapseShootCooldown();
+        //ElapseShootCooldown();
         ElapseInvincibilityCountdown();
 
-        void ElapseShootCooldown()
-        {
-            if (_shootCooldown > 0)
-            {
-                _shootCooldown -= Time.deltaTime;
-                return;
-            }
+        //void ElapseShootCooldown()
+        //{
+        //    if (_shootCooldown > 0)
+        //    {
+        //        _shootCooldown -= Time.deltaTime;
+        //        return;
+        //    }
 
-            Shoot();
-            _shootCooldown += _fireRate;
-        }
+        //    Shoot();
+        //    _shootCooldown += _fireRate;
+        //}
 
         void ElapseInvincibilityCountdown()
         {
@@ -114,37 +119,56 @@ public class Spaceship : MonoBehaviour
         for (var i = 0; i < pattern.MissileCount; i++)
         {
             var missile = GlobalPoolObject.Instance.GetEmpty();
-            GlobalPoolObject.Instance.FuseComponents(Missile, missile);
-            missile.transform.SetPositionAndRotation(
-                transform.position + pattern.Missiles[i].position, 
-                Quaternion.Euler(pattern.Missiles[i].direction)
-            );
+            if (missile!= null)
+            {
+                GlobalPoolObject.Instance.FuseComponents(Missile, missile);
+                missile.transform.SetPositionAndRotation(
+                    transform.position + pattern.Missiles[i].position, 
+                    Quaternion.Euler(pattern.Missiles[i].direction)
+                );
+            }
+            else
+            {
+                Shoot();
+            }
+        }
+    }
+
+    IEnumerator CoShoot()
+    {
+        while (true)
+        {
+            Shoot();
+            yield return new WaitForSeconds(_fireRate);
+            yield return null;
         }
     }
 
     [ContextMenu("Hit")]
     public void Hit()
     {
-        if (IsInvincible)
-            return;
+        //if (IsInvincible)
+        //    return;
         
-        if (HasShield)
-        {
-            HasShield = false;
-            return;
-        }
+        //if (HasShield)
+        //{
+        //    HasShield = false;
+        //    return;
+        //}
 
         Health--;
         MissileLevel = 0;
         
         if (Health == 0)
             Die();
-        else
-            SetInvincibilityFrame();
+        //else
+        //    SetInvincibilityFrame();
     }
 
     public void Die()
     {
+        StopCoroutine(CoShoot());
+        //Debug.Log("nous sommes mort ");
         Destroy(gameObject);
         SpaceshipDied?.Invoke(this);
     }
@@ -152,5 +176,17 @@ public class Spaceship : MonoBehaviour
     public void SetInvincibilityFrame()
     {
         InvincibilityCountdown = _invincibilityDuration;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("Collision détectée avec : " + other.gameObject.name);
+        if (other.gameObject.tag == "BotMissile")
+        {
+            Hit();
+            Debug.Log("aie");
+            GlobalPoolObject.Instance.ClearOneEmpty(other.gameObject);
+            //Destroy(other.gameObject);
+        }
     }
 }

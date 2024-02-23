@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1817953361987426846}
   - component: {fileID: -7440947723495430649}
   - component: {fileID: -7909878956419630118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Missiles
   m_TagString: PlayerMissile
   m_Icon: {fileID: 0}
@@ -140,10 +140,10 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

@@ -9,7 +9,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _bombText;
     [SerializeField] TextMeshProUGUI _invincibilityText;
     [SerializeField] TextMeshProUGUI _shieldText;
-
+    int _score = 0;
     public Spaceship Spaceship { get; set; }
 
     void OnEnable()
@@ -18,8 +18,14 @@ public class GameUI : MonoBehaviour
         _gameManager.ScoreChanged += OnScoreChanged;
         Spaceship.HealthChanged += OnHealthChanged;
         Spaceship.BombCountChanged += OnBombCountChanged;
+        Hitable.score += updateScore;
+        HitableBoss.score += updateScore;
     }
-
+    private void updateScore(int score)
+    {
+        _score += score;
+        OnScoreChanged(_score);
+    }
     void Update()
     {
         if (Spaceship == null)
@@ -34,6 +40,8 @@ public class GameUI : MonoBehaviour
         _gameManager.ScoreChanged -= OnScoreChanged;
         Spaceship.HealthChanged -= OnHealthChanged;
         Spaceship.BombCountChanged -= OnBombCountChanged;
+        Hitable.score -= updateScore;
+        HitableBoss.score += updateScore;
     }
 
     public void ResetUI()
@@ -47,7 +55,7 @@ public class GameUI : MonoBehaviour
 
     void OnScoreChanged(int newScore)
     {
-        _scoreText.text = $"Score : {newScore}";
+        _scoreText.text = $"{newScore}";
     }
 
     void OnHealthChanged(int newHealth)
